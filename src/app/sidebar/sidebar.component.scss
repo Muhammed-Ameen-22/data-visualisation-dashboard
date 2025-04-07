@@ -24,14 +24,18 @@ $text-color: white;
   }
 
   nav {
+    a:first-child {
+      margin-top: 25px; 
+    }
     a {
       display: flex;
       align-items: center;
       padding: 10px;
       text-decoration: none;
       color: $text-color;
-      margin-bottom: 15px;
+      margin-bottom: 25px;
       border-radius: 5px;
+      cursor: pointer;
 
       i {
         margin-right: 10px;
@@ -60,6 +64,12 @@ $text-color: white;
     width: 80px;
     overflow: hidden;
     min-height: 101vh;
+
+    nav {
+      a:first-child {
+        margin-top: 15px; 
+      }
+    }
 
     &.collapsed {
       width: 250px;
