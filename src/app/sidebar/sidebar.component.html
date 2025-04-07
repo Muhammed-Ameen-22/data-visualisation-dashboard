@@ -1,0 +1,30 @@
+<div class="sidebar" [class.collapsed]="!isCollapsed">
+    <div class="toggle-container">
+      <button class="toggle-btn" (click)="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  
+    <div class="logo">
+      <img src="assets/images/DataViz.png" alt="Data-Viz">
+      <span></span>
+    </div>
+  
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">
+        <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+      </a>
+      <a routerLink="/maps" routerLinkActive="active">
+        <i class="fas fa-map-marked-alt"></i> <span>Maps</span>
+      </a>
+      <a routerLink="/notifications" routerLinkActive="active">
+        <i class="fas fa-bell"></i> <span>Notifications</span>
+      </a>
+      <a routerLink="/user-profile" routerLinkActive="active">
+        <i class="fas fa-user"></i> <span>User Profile</span>
+      </a>
+      <a routerLink="/table-list" routerLinkActive="active">
+        <i class="fas fa-list-ul"></i> <span>Table List</span>
+      </a> 
+    </nav>
+  </div>

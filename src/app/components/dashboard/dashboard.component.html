@@ -1,1 +1,11 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+    <app-sidebar (collapseChanged)="onCollapseChanged($event)"></app-sidebar>
+    <div class="main-content" [class.collapsed]="!isSidebarCollapsed">
+      <app-navbar></app-navbar>
+      <div class="content-area">
+        <app-bar-chart></app-bar-chart>
+        <app-line-chart></app-line-chart>
+        <app-pie-chart></app-pie-chart>
+      </div>
+    </div>
+  </div>

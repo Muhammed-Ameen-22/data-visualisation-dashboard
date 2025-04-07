@@ -1,0 +1,16 @@
+<div class="navbar-container">
+  <!-- <div class="navbar-left">
+    <h4>DASHBOARD</h4>
+  </div> -->
+
+  <div class="navbar-right" >
+    <div class="profile-container" (click)="toggleDropdown()">
+      <img class="profile-pic" src="assets/images/profile.png" alt="profile" />
+      
+      <div class="dropdown-menu" *ngIf="showDropdown">
+        <div class="dropdown-item">Profile</div>
+        <div class="dropdown-item logout">Log out</div>
+      </div>
+    </div>
+  </div>
+</div>

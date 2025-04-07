@@ -1,0 +1,22 @@
+.dashboard-container {
+    display: flex;
+  }
+  
+  .main-content {
+    flex: 1;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .content-area {
+    padding: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .main-content {
+  
+      &.collapsed {
+        margin-left: 0; 
+        width: 100%; 
+      }
+    }
+  }
