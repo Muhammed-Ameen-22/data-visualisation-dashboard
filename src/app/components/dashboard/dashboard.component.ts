@@ -34,4 +34,9 @@ export class DashboardComponent {
   onCollapseChanged(collapsed: boolean) {
     this.isSidebarCollapsed = collapsed;
   }
+
+  checkWindowWidth(): boolean {
+    return window.innerWidth <= 768;
+  }
+
 }

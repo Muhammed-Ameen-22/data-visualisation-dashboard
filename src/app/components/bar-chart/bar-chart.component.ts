@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, inject, ViewChild, ElementRef, Inject, PLATFORM_ID, Input } from '@angular/core';
 import {
   Chart,
   ChartConfiguration,
@@ -23,6 +23,7 @@ Chart.register(BarController, BarElement, CategoryScale, LinearScale, Tooltip, L
 })
 export class BarChartComponent implements AfterViewInit {
   @ViewChild('barChartCanvas') barChartCanvas!: ElementRef;
+  @Input() type: 'sales' | 'engagement' | 'performance' = 'sales';
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object
@@ -32,9 +33,17 @@ export class BarChartComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.metricsService.getMetrics().subscribe((response) => {
-        const metrics = response.metrics;
+      let dataObservable;
 
+      if (this.type === 'sales') {
+        dataObservable = this.metricsService.getSalesData();
+      } else if (this.type === 'engagement') {
+        dataObservable = this.metricsService.getUserEngagement();
+      } else {
+        dataObservable = this.metricsService.getPerformanceStats();
+      }
+      dataObservable.subscribe((response) => {
+        let metrics =response;
         const config: ChartConfiguration<'bar'> = {
           type: 'bar',
           data: {
@@ -44,13 +53,13 @@ export class BarChartComponent implements AfterViewInit {
                 label: metrics[0].year.toString(),
                 data: metrics[0].data,
                 backgroundColor: '#ed64a6',
-                barThickness: 8,
+                barThickness: window.innerWidth < 768 ? 8 : 30
               },
               {
                 label: metrics[1].year.toString(),
                 data: metrics[1].data,
                 backgroundColor: '#4c51bf',
-                barThickness: 8,
+                barThickness: window.innerWidth < 768 ? 8 : 30
               },
             ],
           },

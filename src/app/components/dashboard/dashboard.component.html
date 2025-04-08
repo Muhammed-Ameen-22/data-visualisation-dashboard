@@ -1,6 +1,6 @@
 <div class="dashboard-container">
   <app-sidebar (collapseChanged)="onCollapseChanged($event)"></app-sidebar>
-  <div class="main-content" [class.collapsed]="!isSidebarCollapsed">
+  <div class="main-content" [class.collapsed]="!isSidebarCollapsed" [class.sidebar-open-mobile]="!isSidebarCollapsed">
     <app-navbar></app-navbar>
     <div class="top-filter">
       <label for="sectionFilter">Filter:</label>
@@ -15,7 +15,7 @@
     <div class="content-area">
       <div *ngIf="selectedSection === 'all' || selectedSection === 'sales'" class="chart-section">
         <div class="chart-header">
-          <h3>Sales Data</h3>
+          <h3>Sales Data (In Millions)</h3>
           <select [(ngModel)]="selectedSalesChart">
             <option value="line">Line Chart</option>
             <option value="bar">Bar Chart</option>
@@ -23,15 +23,15 @@
           </select>
         </div>
         <ng-container [ngSwitch]="selectedSalesChart">
-          <app-line-chart *ngSwitchCase="'line'"></app-line-chart>
-          <app-bar-chart *ngSwitchCase="'bar'"></app-bar-chart>
-          <app-pie-chart *ngSwitchCase="'pie'"></app-pie-chart>
+          <app-line-chart *ngSwitchCase="'line'" [type]="'sales'"></app-line-chart>
+          <app-bar-chart *ngSwitchCase="'bar'" [type]="'sales'"></app-bar-chart>
+          <app-pie-chart *ngSwitchCase="'pie'" [type]="'sales'"></app-pie-chart>
         </ng-container>
       </div>
 
       <div *ngIf="selectedSection === 'all' || selectedSection === 'engagement'" class="chart-section">
         <div class="chart-header">
-          <h3>User Engagement</h3>
+          <h3>Monthly Active Users</h3>
           <select [(ngModel)]="selectedEngagementChart">
             <option value="line">Line Chart</option>
             <option value="bar">Bar Chart</option>
@@ -39,15 +39,15 @@
           </select>
         </div>
         <ng-container [ngSwitch]="selectedEngagementChart">
-          <app-line-chart *ngSwitchCase="'line'"></app-line-chart>
-          <app-bar-chart *ngSwitchCase="'bar'"></app-bar-chart>
-          <app-pie-chart *ngSwitchCase="'pie'"></app-pie-chart>
+          <app-line-chart *ngSwitchCase="'line'" [type]="'engagement'"></app-line-chart>
+          <app-bar-chart *ngSwitchCase="'bar'" [type]="'engagement'"></app-bar-chart>
+          <app-pie-chart *ngSwitchCase="'pie'" [type]="'engagement'"></app-pie-chart>
         </ng-container>
       </div>
 
       <div *ngIf="selectedSection === 'all' || selectedSection === 'performance'" class="chart-section">
         <div class="chart-header">
-          <h3>Performance Statistics</h3>
+          <h3> Customer Satisfaction Index</h3>
           <select [(ngModel)]="selectedPerformanceChart">
             <option value="line">Line Chart</option>
             <option value="bar">Bar Chart</option>
@@ -55,9 +55,9 @@
           </select>
         </div>
         <ng-container [ngSwitch]="selectedPerformanceChart">
-          <app-line-chart *ngSwitchCase="'line'"></app-line-chart>
-          <app-bar-chart *ngSwitchCase="'bar'"></app-bar-chart>
-          <app-pie-chart *ngSwitchCase="'pie'"></app-pie-chart>
+          <app-line-chart *ngSwitchCase="'line'" [type]="'performance'"></app-line-chart>
+          <app-bar-chart *ngSwitchCase="'bar'" [type]="'performance'"></app-bar-chart>
+          <app-pie-chart *ngSwitchCase="'pie'" [type]="'performance'"></app-pie-chart>
         </ng-container>
       </div>
     </div>

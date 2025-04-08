@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, inject, ViewChild, ElementRef, Inject, PLATFORM_ID, Input } from '@angular/core';
 import {
   Chart,
   ChartConfiguration,
@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { MockMetricsService } from '../../services/mock-metrics.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import zoomPlugin from 'chartjs-plugin-zoom';
 
 Chart.register(LineController, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -24,16 +25,32 @@ Chart.register(LineController, LineElement, PointElement, CategoryScale, LinearS
 })
 export class LineChartComponent implements AfterViewInit {
   @ViewChild('lineChartCanvas') lineChartCanvas!: ElementRef;
+  @Input() type: 'sales' | 'engagement' | 'performance' = 'sales';
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   private metricsService = inject(MockMetricsService);
 
+  async ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      const { default: zoomPlugin } = await import('chartjs-plugin-zoom');
+      Chart.register(zoomPlugin);
+    }
+  }
+
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.metricsService.getMetrics().subscribe((response) => {
-        const metrics = response.metrics;
+      let dataObservable;
 
+      if (this.type === 'sales') {
+        dataObservable = this.metricsService.getSalesData();
+      } else if (this.type === 'engagement') {
+        dataObservable = this.metricsService.getUserEngagement();
+      } else {
+        dataObservable = this.metricsService.getPerformanceStats();
+      }
+      dataObservable.subscribe((response) => {
+        let metrics =response;
         const config: ChartConfiguration<'line'> = {
           type: 'line',
           data: {
@@ -79,6 +96,19 @@ export class LineChartComponent implements AfterViewInit {
                 display: false,
                 text: 'Performance Chart',
               },
+              zoom:{
+              zoom: {
+                wheel: {
+                  enabled: true
+                },
+                // Remove pinch if hammerjs is causing issues
+                // pinch: {
+                //   enabled: true
+                // },
+                mode: 'xy'
+              }
+            },
+             
             },
             scales: {
               x: {

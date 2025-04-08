@@ -74,6 +74,11 @@
     color: #fff;
   }
 
+  app-line-chart, app-bar-chart, app-pie-chart {
+    max-height: 485px;
+    width: 100%;
+  }
+
   @media (max-width: 768px) {
 
     select {
@@ -104,6 +109,10 @@
       &.collapsed {
         margin-left: 0; 
         width: 100%; 
+      }
+      &.sidebar-open-mobile {
+        pointer-events: none; 
+        opacity: 0.9; 
       }
     }
 

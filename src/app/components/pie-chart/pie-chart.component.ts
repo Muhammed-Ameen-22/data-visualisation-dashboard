@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, inject, ViewChild, ElementRef, Inject, PLATFORM_ID, Input } from '@angular/core';
 import {
   Chart,
   ChartConfiguration,
@@ -21,6 +21,7 @@ Chart.register(PieController, ArcElement, Tooltip, Legend);
 })
 export class PieChartComponent implements AfterViewInit {
   @ViewChild('pieChartCanvas') pieChartCanvas!: ElementRef;
+  @Input() type: 'sales' | 'engagement' | 'performance' = 'sales';
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -28,9 +29,18 @@ export class PieChartComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.metricsService.getMetrics().subscribe((response) => {
-        const metrics = response.metrics;
 
+      let dataObservable;
+
+      if (this.type === 'sales') {
+        dataObservable = this.metricsService.getSalesData();
+      } else if (this.type === 'engagement') {
+        dataObservable = this.metricsService.getUserEngagement();
+      } else {
+        dataObservable = this.metricsService.getPerformanceStats();
+      }
+      dataObservable.subscribe((response) => {
+        let metrics=response;
         const config: ChartConfiguration<'pie'> = {
           type: 'pie',
           data: {
