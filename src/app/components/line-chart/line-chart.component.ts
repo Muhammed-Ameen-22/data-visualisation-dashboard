@@ -12,7 +12,6 @@ import {
 } from 'chart.js';
 import { MockMetricsService } from '../../services/mock-metrics.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import zoomPlugin from 'chartjs-plugin-zoom';
 
 Chart.register(LineController, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -54,7 +53,7 @@ export class LineChartComponent implements AfterViewInit {
         const config: ChartConfiguration<'line'> = {
           type: 'line',
           data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug'],
             datasets: [
               {
                 label: metrics[0].year.toString(),
@@ -96,18 +95,22 @@ export class LineChartComponent implements AfterViewInit {
                 display: false,
                 text: 'Performance Chart',
               },
-              zoom:{
-              zoom: {
-                wheel: {
-                  enabled: true
-                },
-                // Remove pinch if hammerjs is causing issues
-                // pinch: {
-                //   enabled: true
-                // },
-                mode: 'xy'
-              }
-            },
+            //   zoom:{
+            //   zoom: {
+            //     wheel: {
+            //       enabled: true
+            //     },
+            //     pinch: {
+            //       enabled: true
+            //     },
+            //     mode: 'xy'
+            //   },
+            //   pan: {
+            //     enabled: true,
+            //     mode: 'x', 
+            //     modifierKey: 'ctrl', 
+            //   }
+            // },
              
             },
             scales: {

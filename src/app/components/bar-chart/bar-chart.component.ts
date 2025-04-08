@@ -31,6 +31,13 @@ export class BarChartComponent implements AfterViewInit {
 
   private metricsService = inject(MockMetricsService);
 
+    async ngOnInit() {
+      if (isPlatformBrowser(this.platformId)) {
+        const { default: zoomPlugin } = await import('chartjs-plugin-zoom');
+        Chart.register(zoomPlugin);
+      }
+    }
+
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
       let dataObservable;
@@ -81,6 +88,22 @@ export class BarChartComponent implements AfterViewInit {
                 display: false,
                 text: 'Orders Chart',
               },
+              // zoom:{
+              //   zoom: {
+              //     wheel: {
+              //       enabled: true
+              //     },
+              //     pinch: {
+              //       enabled: true
+              //     },
+              //     mode: 'xy'
+              //   },
+              //   pan: {
+              //     enabled: true,
+              //     mode: 'x', 
+              //     modifierKey: 'ctrl', 
+              //   }
+              // },
             },
             scales: {
               x: {

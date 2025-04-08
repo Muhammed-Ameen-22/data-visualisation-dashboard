@@ -4,7 +4,7 @@
     <app-navbar></app-navbar>
     <div class="top-filter">
       <label for="sectionFilter">Filter:</label>
-      <select id="sectionFilter" [(ngModel)]="selectedSection">
+      <select id="sectionFilter" [ngModel]="(selectedSection$ | async)" (ngModelChange)="onSectionChange($event)">
         <option value="all">All</option>
         <option value="sales">Sales Data</option>
         <option value="engagement">User Engagement</option>
@@ -13,48 +13,48 @@
     </div>
 
     <div class="content-area">
-      <div *ngIf="selectedSection === 'all' || selectedSection === 'sales'" class="chart-section">
+      <div *ngIf="(selectedSection$ | async) === 'all' || (selectedSection$ | async) === 'sales'" class="chart-section">
         <div class="chart-header">
           <h3>Sales Data (In Millions)</h3>
-          <select [(ngModel)]="selectedSalesChart">
+          <select [ngModel]="(salesChartType$ | async)" (ngModelChange)="onSalesChartChange($event)">
             <option value="line">Line Chart</option>
             <option value="bar">Bar Chart</option>
             <option value="pie">Pie Chart</option>
           </select>
         </div>
-        <ng-container [ngSwitch]="selectedSalesChart">
+        <ng-container [ngSwitch]="salesChartType$ | async">
           <app-line-chart *ngSwitchCase="'line'" [type]="'sales'"></app-line-chart>
           <app-bar-chart *ngSwitchCase="'bar'" [type]="'sales'"></app-bar-chart>
           <app-pie-chart *ngSwitchCase="'pie'" [type]="'sales'"></app-pie-chart>
         </ng-container>
       </div>
 
-      <div *ngIf="selectedSection === 'all' || selectedSection === 'engagement'" class="chart-section">
+      <div *ngIf="(selectedSection$ | async) === 'all' || (selectedSection$ | async) === 'engagement'" class="chart-section">
         <div class="chart-header">
           <h3>Monthly Active Users</h3>
-          <select [(ngModel)]="selectedEngagementChart">
+          <select [ngModel]="(engagementChartType$ | async)" (ngModelChange)="onEngagementChartChange($event)">
             <option value="line">Line Chart</option>
             <option value="bar">Bar Chart</option>
             <option value="pie">Pie Chart</option>
           </select>
         </div>
-        <ng-container [ngSwitch]="selectedEngagementChart">
+        <ng-container [ngSwitch]="engagementChartType$ | async">
           <app-line-chart *ngSwitchCase="'line'" [type]="'engagement'"></app-line-chart>
           <app-bar-chart *ngSwitchCase="'bar'" [type]="'engagement'"></app-bar-chart>
           <app-pie-chart *ngSwitchCase="'pie'" [type]="'engagement'"></app-pie-chart>
         </ng-container>
       </div>
 
-      <div *ngIf="selectedSection === 'all' || selectedSection === 'performance'" class="chart-section">
+      <div *ngIf="(selectedSection$ | async) === 'all' || (selectedSection$ | async) === 'performance'" class="chart-section">
         <div class="chart-header">
           <h3> Customer Satisfaction Index</h3>
-          <select [(ngModel)]="selectedPerformanceChart">
+          <select [ngModel]="(performanceChartType$ | async)" (ngModelChange)="onPerformanceChartChange($event)">
             <option value="line">Line Chart</option>
             <option value="bar">Bar Chart</option>
             <option value="pie">Pie Chart</option>
           </select>
         </div>
-        <ng-container [ngSwitch]="selectedPerformanceChart">
+        <ng-container [ngSwitch]="performanceChartType$ | async">
           <app-line-chart *ngSwitchCase="'line'" [type]="'performance'"></app-line-chart>
           <app-bar-chart *ngSwitchCase="'bar'" [type]="'performance'"></app-bar-chart>
           <app-pie-chart *ngSwitchCase="'pie'" [type]="'performance'"></app-pie-chart>
