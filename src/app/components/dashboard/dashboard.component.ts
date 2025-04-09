@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { SidebarComponent } from '../../sidebar/sidebar.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 import { BarChartComponent } from '../bar-chart/bar-chart.component';
 import { LineChartComponent } from '../line-chart/line-chart.component';
 import { PieChartComponent } from '../pie-chart/pie-chart.component';
+import { MetricCardComponent } from '../metric-card/metric-card.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -21,7 +22,8 @@ import { selectColorScheme, selectEngagementChart, selectPerformanceChart, selec
     SidebarComponent,
     BarChartComponent,
     LineChartComponent,
-    PieChartComponent
+    PieChartComponent,
+    MetricCardComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
@@ -34,6 +36,12 @@ export class DashboardComponent {
   engagementChartType$ = this.store.select(selectEngagementChart);
   performanceChartType$ = this.store.select(selectPerformanceChart);
   selectedColorScheme=this.store.select(selectColorScheme);
+
+  colorSchemes = {
+    greenBlue: ['#34d399', '#3b82f6'],
+    redYellow: ['#f87171', '#fbbf24'],
+    pinkIndigo: ['#ed64a6', '#4c51bf'],
+  };
 
 onSectionChange(section: string) {
   this.store.dispatch(DashboardActions.setSection({ section }));
@@ -67,4 +75,10 @@ onColorSchemeChange(scheme: string[]) {
     return window.innerWidth <= 768;
   }
 
+  compareColorSchemes = (a: string[], b: string[]) => {
+    return JSON.stringify(a) === JSON.stringify(b);
+  };
+  
+
+  
 }

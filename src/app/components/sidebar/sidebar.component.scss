@@ -36,14 +36,26 @@ $text-color: white;
       margin-bottom: 25px;
       border-radius: 5px;
       cursor: pointer;
+      transition: all 0.3s ease;
 
       i {
         margin-right: 10px;
+        color: #48bb78;
       }
 
       &.active {
         background-color: $active-bg;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        transform: scale(1.02); 
+        font-weight: 600;
       }
+      &:hover {
+        background-color: #454866;
+        transform: scale(1.02);
+        box-shadow: 0 0 10px rgba(72, 187, 255, 0.2); 
+        border-left: 3px solid #66ccff; 
+        transition: all 0.3s ease;
+      } 
     }
   }
 

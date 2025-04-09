@@ -114,14 +114,12 @@ export class BarChartComponent implements AfterViewInit, OnChanges  {
                 display: this.scaleSettings.xDisplay,
                 grid: {
                   color: 'rgba(33, 37, 41, 0.3)',
-                  // borderDash: [2],
                 },
               },
               y: {
                 display: this.scaleSettings.yDisplay,
                 grid: {
                   color: 'rgba(33, 37, 41, 0.3)',
-                  // borderDash: [2],
                 },
               },
             },

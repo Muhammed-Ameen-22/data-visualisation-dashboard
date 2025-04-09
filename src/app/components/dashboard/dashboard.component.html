@@ -2,6 +2,45 @@
   <app-sidebar (collapseChanged)="onCollapseChanged($event)"></app-sidebar>
   <div class="main-content" [class.collapsed]="!isSidebarCollapsed" [class.sidebar-open-mobile]="!isSidebarCollapsed">
     <app-navbar></app-navbar>
+    <div class="metrics-wrapper">
+      <div class="metrics-grid">
+        <app-metric-card
+        title="Traffic"
+        value="4,81,200"
+        icon="fas fa-chart-bar"
+        iconBgColor="#e53e3e"
+        trend="up"
+        trendValue="2.26%"
+        trendText="Since last month"/>
+
+      <app-metric-card
+        title="New Users"
+        value="1232"
+        icon="fas fa-user-plus"
+        iconBgColor="#ed8936"
+        trend="down"
+        trendValue="1.79%"
+        trendText="Since last week"/>
+
+      <app-metric-card
+        title="Sales"
+        value="876"
+        icon="fas fa-users"
+        iconBgColor="#ed64a6"
+        trend="down"
+        trendValue="4.20%"
+        trendText="Since yesterday"/>
+
+      <app-metric-card
+        title="Performance"
+        value="52.43%"
+        icon="fas fa-chart-line"
+        iconBgColor="#38a169"
+        trend="up"
+        trendValue="8%"
+        trendText="Since last month"/>
+      </div>
+    </div>
     <div class="top-filter">
       <label for="sectionFilter">Filter:</label>
       <select id="sectionFilter" [ngModel]="(selectedSection$ | async)" (ngModelChange)="onSectionChange($event)">
@@ -11,14 +50,14 @@
         <option value="performance">Performance Stats</option>
       </select>
 
-      <div class="chart-customization">
+      <div class="chart-modifiers">
         <label>Color Scheme : </label>
-        <select [ngModel]="(selectedColorScheme | async)" (ngModelChange)="onColorSchemeChange($event)">
-          <option [ngValue]="['#ed64a6', '#4c51bf']">Pink / Indigo</option>
-          <option [ngValue]="['#34d399', '#3b82f6']">Green / Blue</option>
-          <option [ngValue]="['#f87171', '#fbbf24']">Red / Yellow</option>
+        <select [ngModel]="(selectedColorScheme | async)" (ngModelChange)="onColorSchemeChange($event)"
+        [compareWith]="compareColorSchemes">
+          <option [ngValue]="colorSchemes.greenBlue">Green / Blue</option>
+          <option [ngValue]="colorSchemes.redYellow">Red / Yellow</option>
+          <option [ngValue]="colorSchemes.pinkIndigo">Pink / Indigo</option>
         </select>
-      
         <!-- <div>
           <label><input type="checkbox" [(ngModel)]="showXAxis" /> Show X-Axis</label>
           <label><input type="checkbox" [(ngModel)]="showYAxis" /> Show Y-Axis</label>
@@ -57,8 +96,12 @@
           </select>
         </div>
         <ng-container [ngSwitch]="engagementChartType$ | async">
-          <app-line-chart *ngSwitchCase="'line'" [type]="'engagement'"></app-line-chart>
-          <app-bar-chart *ngSwitchCase="'bar'" [type]="'engagement'"></app-bar-chart>
+          <app-line-chart *ngSwitchCase="'line'" [type]="'engagement'"
+            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"
+          ></app-line-chart>
+          <app-bar-chart *ngSwitchCase="'bar'" [type]="'engagement'"
+            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"
+          ></app-bar-chart>
           <app-pie-chart *ngSwitchCase="'pie'" [type]="'engagement'"></app-pie-chart>
         </ng-container>
       </div>
@@ -73,8 +116,12 @@
           </select>
         </div>
         <ng-container [ngSwitch]="performanceChartType$ | async">
-          <app-line-chart *ngSwitchCase="'line'" [type]="'performance'"></app-line-chart>
-          <app-bar-chart *ngSwitchCase="'bar'" [type]="'performance'"></app-bar-chart>
+          <app-line-chart *ngSwitchCase="'line'" [type]="'performance'"
+            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"
+          ></app-line-chart>
+          <app-bar-chart *ngSwitchCase="'bar'" [type]="'performance'"
+            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"
+          ></app-bar-chart>
           <app-pie-chart *ngSwitchCase="'pie'" [type]="'performance'"></app-pie-chart>
         </ng-container>
       </div>

@@ -8,11 +8,7 @@ import { map, Observable } from 'rxjs';
 export class MockMetricsService {
 
   constructor(private http: HttpClient) {}
-
-  // getMetrics(): Observable<any> {
-  //   return this.http.get<any>('assets/data/mock-data.json');
-  // }
-
+  
   getSalesData(): Observable<any> {
     return this.http.get<any>('assets/data/mock-data.json').pipe(
       map(data => data.salesData)
