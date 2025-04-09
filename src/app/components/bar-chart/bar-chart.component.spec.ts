@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BarChartComponent } from './bar-chart.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('BarChartComponent', () => {
   let component: BarChartComponent;
@@ -8,7 +8,8 @@ describe('BarChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BarChartComponent]
+      imports: [BarChartComponent],
+      providers: [provideHttpClient(withInterceptorsFromDi())]
     })
     .compileComponents();
 

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LineChartComponent } from './line-chart.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('LineChartComponent', () => {
   let component: LineChartComponent;
@@ -8,7 +8,8 @@ describe('LineChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LineChartComponent]
+      imports: [LineChartComponent],
+      providers: [provideHttpClient(withInterceptorsFromDi())]
     })
     .compileComponents();
 
