@@ -10,6 +10,20 @@
         <option value="engagement">User Engagement</option>
         <option value="performance">Performance Stats</option>
       </select>
+
+      <div class="chart-customization">
+        <label>Color Scheme : </label>
+        <select [ngModel]="(selectedColorScheme | async)" (ngModelChange)="onColorSchemeChange($event)">
+          <option [ngValue]="['#ed64a6', '#4c51bf']">Pink / Indigo</option>
+          <option [ngValue]="['#34d399', '#3b82f6']">Green / Blue</option>
+          <option [ngValue]="['#f87171', '#fbbf24']">Red / Yellow</option>
+        </select>
+      
+        <!-- <div>
+          <label><input type="checkbox" [(ngModel)]="showXAxis" /> Show X-Axis</label>
+          <label><input type="checkbox" [(ngModel)]="showYAxis" /> Show Y-Axis</label>
+        </div> -->
+      </div>
     </div>
 
     <div class="content-area">
@@ -23,8 +37,12 @@
           </select>
         </div>
         <ng-container [ngSwitch]="salesChartType$ | async">
-          <app-line-chart *ngSwitchCase="'line'" [type]="'sales'"></app-line-chart>
-          <app-bar-chart *ngSwitchCase="'bar'" [type]="'sales'"></app-bar-chart>
+          <app-line-chart *ngSwitchCase="'line'" [type]="'sales'"
+            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"
+          ></app-line-chart>
+          <app-bar-chart *ngSwitchCase="'bar'" [type]="'sales'"
+            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"
+          ></app-bar-chart>
           <app-pie-chart *ngSwitchCase="'pie'" [type]="'sales'"></app-pie-chart>
         </ng-container>
       </div>

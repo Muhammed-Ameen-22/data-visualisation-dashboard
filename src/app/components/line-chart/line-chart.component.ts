@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, ViewChild, ElementRef, Inject, PLATFORM_ID, Input } from '@angular/core';
+import { AfterViewInit, Component, inject, ViewChild, ElementRef, Inject, PLATFORM_ID, Input, SimpleChanges } from '@angular/core';
 import {
   Chart,
   ChartConfiguration,
@@ -25,10 +25,14 @@ Chart.register(LineController, LineElement, PointElement, CategoryScale, LinearS
 export class LineChartComponent implements AfterViewInit {
   @ViewChild('lineChartCanvas') lineChartCanvas!: ElementRef;
   @Input() type: 'sales' | 'engagement' | 'performance' = 'sales';
+  @Input() colorScheme: string[] = ['#ed64a6', '#4c51bf'];
+  @Input() scaleSettings: { xDisplay: boolean; yDisplay: boolean } = { xDisplay: false, yDisplay: true };
+
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   private metricsService = inject(MockMetricsService);
+  private chartInstance: Chart<'line'> | null = null;
 
   async ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -58,8 +62,8 @@ export class LineChartComponent implements AfterViewInit {
               {
                 label: metrics[0].year.toString(),
                 data: metrics[0].data,
-                borderColor: '#ed64a6',
-                backgroundColor: 'rgba(237, 100, 166, 0.2)',
+                borderColor: this.colorScheme[0],
+                backgroundColor: this.colorScheme[0],
                 fill: true,
                 tension: 0.4,
                 pointRadius: 4,
@@ -68,8 +72,8 @@ export class LineChartComponent implements AfterViewInit {
               {
                 label: metrics[1].year.toString(),
                 data: metrics[1].data,
-                borderColor: '#4c51bf',
-                backgroundColor: 'rgba(76, 81, 191, 0.2)',
+                borderColor: this.colorScheme[1],
+                backgroundColor: this.colorScheme[1],
                 fill: true,
                 tension: 0.4,
                 pointRadius: 4,
@@ -88,7 +92,7 @@ export class LineChartComponent implements AfterViewInit {
               legend: {
                 position: 'bottom',
                 labels: {
-                  color: 'rgba(0,0,0,.4)',
+                  color: 'rgba(255,255,255,1)',
                 },
               },
               title: {
@@ -137,9 +141,29 @@ export class LineChartComponent implements AfterViewInit {
         const canvas = this.lineChartCanvas.nativeElement as HTMLCanvasElement;
         const ctx = canvas.getContext('2d');
         if (ctx) {
-          new Chart(ctx, config);
+          this.chartInstance = new Chart(ctx, config);
         }
       });
     }
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['colorScheme'] && !changes['colorScheme'].firstChange) {
+      this.updateChartColors();
+    }
+  }
+
+  private updateChartColors(): void {
+    if (this.chartInstance && this.chartInstance.data.datasets.length >= 2) {
+      this.chartInstance.data.datasets[0].backgroundColor = this.colorScheme[0];
+      this.chartInstance.data.datasets[1].backgroundColor = this.colorScheme[1];
+      this.chartInstance.data.datasets[0].borderColor = this.colorScheme[0];
+      this.chartInstance.data.datasets[1].borderColor = this.colorScheme[1];
+
+      this.chartInstance.update();
+    }
+  }
+
+
+
 }

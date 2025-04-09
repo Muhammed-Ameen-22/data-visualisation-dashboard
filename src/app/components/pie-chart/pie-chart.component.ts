@@ -70,7 +70,7 @@ export class PieChartComponent implements AfterViewInit {
               legend: {
                 position: 'bottom',
                 labels: {
-                  color: 'rgba(255,255,255,0.7)',
+                  color: 'rgba(255,255,255,1)',
                 },
               },
               tooltip: {

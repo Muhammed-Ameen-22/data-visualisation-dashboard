@@ -7,6 +7,8 @@ export interface DashboardState {
   selectedSalesChart: string;
   selectedEngagementChart: string;
   selectedPerformanceChart: string;
+  colorScheme: string[];
+  scaleType: string;
 }
 
 export const dashboardReducer = createReducer(
@@ -38,6 +40,14 @@ export const dashboardReducer = createReducer(
         ...state,
         selectedPerformanceChart: chart
       };
-    })
+    }),
+    on(DashboardActions.setColorScheme, (state, { colorScheme }) => ({
+        ...state,
+        colorScheme
+      })),
+      on(DashboardActions.setScaleType, (state, { scaleType }) => ({
+        ...state,
+        scaleType
+      }))
   );
   

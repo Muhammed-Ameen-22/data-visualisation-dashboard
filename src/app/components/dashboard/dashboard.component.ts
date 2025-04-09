@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import * as DashboardActions from '../../store/dashboard/dashboard.actions';
-import { selectEngagementChart, selectPerformanceChart, selectSalesChart, selectSelectedSection } from '../../store/dashboard/dashboard.selectors';
+import { selectColorScheme, selectEngagementChart, selectPerformanceChart, selectSalesChart, selectScaleType, selectSelectedSection } from '../../store/dashboard/dashboard.selectors';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,15 +28,12 @@ import { selectEngagementChart, selectPerformanceChart, selectSalesChart, select
 })
 export class DashboardComponent {
   store = inject(Store<AppState>);
-  selectedSection = 'all';
-  selectedSalesChart = 'line';
-  selectedEngagementChart = 'line';
-  selectedPerformanceChart = 'line';
   isSidebarCollapsed = false;
   selectedSection$ = this.store.select(selectSelectedSection);
   salesChartType$ = this.store.select(selectSalesChart);
   engagementChartType$ = this.store.select(selectEngagementChart);
   performanceChartType$ = this.store.select(selectPerformanceChart);
+  selectedColorScheme=this.store.select(selectColorScheme);
 
 onSectionChange(section: string) {
   this.store.dispatch(DashboardActions.setSection({ section }));
@@ -53,6 +50,14 @@ onEngagementChartChange(chart: string) {
 onPerformanceChartChange(chart: string) {
   this.store.dispatch(DashboardActions.setPerformanceChart({ chart }));
 }
+
+onColorSchemeChange(scheme: string[]) {
+  this.store.dispatch(DashboardActions.setColorScheme({ colorScheme: scheme }));
+}
+
+// onScaleTypeChange(scale: string) {
+//   this.store.dispatch(DashboardActions.setScaleType({ scaleType: scale }));
+// }
 
   onCollapseChanged(collapsed: boolean) {
     this.isSidebarCollapsed = collapsed;
