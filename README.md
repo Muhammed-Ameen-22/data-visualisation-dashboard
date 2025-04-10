@@ -1,59 +1,49 @@
-# DataVisualisationDashboard
+# 📊 Data Visualisation Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.4.
+An interactive data visualization dashboard built with **Angular 19**, **NgRx**, and **Chart.js**. The dashboard supports dynamic chart rendering, user-customizable themes, and real-time state-driven interactivity.
 
-## Development server
+![Dashboard Screenshot](![{EABBFC4C-C517-4C2A-AAE7-61037AA6443A}](https://github.com/user-attachments/assets/2bed144b-8224-4a13-be5e-bc903ba118ec)
+)
 
-To start a local development server, run:
+---
+
+## 🚀 Features
+
+- 📈 Line, Bar, and Pie chart support using `Chart.js`
+- 🎨 Customizable color schemes
+- ⚙️ State management with NgRx for filters and chart configurations
+- 🔀 Dynamic data loading using mock JSON data
+- 🌙 Clean and responsive layout
+
+---
+
+## 🛠 Tech Stack
+
+- **Angular 19**
+- **NgRx Store & Effects**
+- **Chart.js**
+- **RxJS**
+- **SCSS**
+
+---
+
+## 📦 Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Muhammed-Ameen-22/data-visualisation-dashboard.git
+cd data-visualisation-dashboard
+
+### 2. Install Dependencies
+
+```bash
+npm install
+
+### 3. Run the Server
 
 ```bash
 ng serve
-```
+Then open your browser at: http://localhost:4200
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
