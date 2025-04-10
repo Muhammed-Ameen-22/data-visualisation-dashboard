@@ -34,16 +34,16 @@ An interactive data visualization dashboard built with **Angular 19**, **NgRx**,
 ```bash
 git clone https://github.com/Muhammed-Ameen-22/data-visualisation-dashboard.git
 cd data-visualisation-dashboard
-
+````
 ### 2. Install Dependencies
 
 ```bash
 npm install
-
+````
 ### 3. Run the Server
 
 ```bash
 ng serve
 Then open your browser at: http://localhost:4200
-
+```
 
