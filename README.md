@@ -1,19 +1,27 @@
 # 📊 Data Visualisation Dashboard
 
-An interactive data visualization dashboard built with **Angular 19**, **NgRx**, and **Chart.js**. The dashboard supports dynamic chart rendering, user-customizable themes, and real-time state-driven interactivity.
-
-![Dashboard Screenshot](![{EABBFC4C-C517-4C2A-AAE7-61037AA6443A}](https://github.com/user-attachments/assets/2bed144b-8224-4a13-be5e-bc903ba118ec)
-)
+An interactive data visualisation dashboard built with **Angular 19**, **NgRx**, and **Chart.js**. The dashboard supports dynamic chart rendering, user-customisable themes, and real-time state-driven interactivity.
 
 ---
 
-## 🚀 Features
+## ✨ Key Features
+📈 Dynamic Chart Rendering
+Supports Line, Bar, and Pie charts with smooth transitions.
 
-- 📈 Line, Bar, and Pie chart support using `Chart.js`
-- 🎨 Customizable color schemes
-- ⚙️ State management with NgRx for filters and chart configurations
-- 🔀 Dynamic data loading using mock JSON data
-- 🌙 Clean and responsive layout
+🎨 Theme Customisation
+Change color schemes for individual charts via dropdowns.
+
+🧠 NgRx State Management
+Uses a centralised store to manage chart types, color schemes, and selected sections (sales, engagement, performance).
+
+⚡ Real-Time Interactivity
+Changes in dropdown filters immediately reflect on the charts without reloads.
+
+🧪 Mock Data Integration
+Charts are driven using dummy JSON datasets to simulate real-world data.
+
+💻 Responsive Layout
+Fully optimised for desktop and mobile views, including sidebar collapse for small screens.
 
 ---
 
@@ -26,6 +34,14 @@ An interactive data visualization dashboard built with **Angular 19**, **NgRx**,
 - **SCSS**
 
 ---
+##  Screenshots
+![Dashboard Screenshot](src/assets/images/screenshots/Screenshot(6).png)
+
+![Dashboard Screenshot](src/assets/images/screenshots/Screenshot(7).png)
+
+![Dashboard Screenshot](src/assets/images/screenshots/Screenshot(3).png)
+
+![Dashboard Screenshot](src/assets/images/screenshots/mobile-screen.png)
 
 ## 📦 Setup Instructions
 
