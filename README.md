@@ -35,11 +35,11 @@ Fully optimised for desktop and mobile views, including sidebar collapse for sma
 
 ---
 ##  Screenshots
-![Dashboard Screenshot](src/assets/images/screenshots/Screenshot(6).png)
+![Dashboard Screenshot](src/assets/images/screenshots/Screenshot (6).png)
 
-![Dashboard Screenshot](src/assets/images/screenshots/Screenshot(7).png)
+![Dashboard Screenshot](src/assets/images/screenshots/Screenshot (7).png)
 
-![Dashboard Screenshot](src/assets/images/screenshots/Screenshot(3).png)
+![Dashboard Screenshot](src/assets/images/screenshots/Screenshot (3).png)
 
 ![Dashboard Screenshot](src/assets/images/screenshots/mobile-screen.png)
 
