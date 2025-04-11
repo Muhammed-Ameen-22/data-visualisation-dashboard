@@ -43,6 +43,8 @@ Fully optimised for desktop and mobile views, including sidebar collapse for sma
 
 ![Dashboard Screenshot](src/assets/images/screenshots/mobile-screen.png)
 
+Check out the [ROADMAP.md](./ROADMAP.md) to see what's coming next!
+
 ## 📦 Setup Instructions
 
 ### 1. Clone the Repository
