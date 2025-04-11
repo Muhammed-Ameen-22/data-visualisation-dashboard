@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import * as DashboardActions from '../../store/dashboard/dashboard.actions';
-import { selectColorScheme, selectEngagementChart, selectPerformanceChart, selectSalesChart, selectScaleType, selectSelectedSection } from '../../store/dashboard/dashboard.selectors';
+import { selectColorScheme, selectEngagementChart, selectPerformanceChart, selectSalesChart, selectSelectedSection } from '../../store/dashboard/dashboard.selectors';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,37 +35,37 @@ export class DashboardComponent {
   salesChartType$ = this.store.select(selectSalesChart);
   engagementChartType$ = this.store.select(selectEngagementChart);
   performanceChartType$ = this.store.select(selectPerformanceChart);
-  selectedColorScheme=this.store.select(selectColorScheme);
+  selectedColorScheme = this.store.select(selectColorScheme);
 
+  //color schemes for the charts, if needed we can add more
   colorSchemes = {
     greenBlue: ['#34d399', '#3b82f6'],
     redYellow: ['#f87171', '#fbbf24'],
     pinkIndigo: ['#ed64a6', '#4c51bf'],
   };
 
-onSectionChange(section: string) {
-  this.store.dispatch(DashboardActions.setSection({ section }));
-}
+  // Dispatches NgRx actions to update the dashboard state based on user interactions
+  // such as section selection, chart type, color scheme, and sidebar state.
 
-onSalesChartChange(chart: string) {
-  this.store.dispatch(DashboardActions.setSalesChart({ chart }));
-}
+  onSectionChange(section: string) {
+    this.store.dispatch(DashboardActions.setSection({ section }));
+  }
 
-onEngagementChartChange(chart: string) {
-  this.store.dispatch(DashboardActions.setEngagementChart({ chart }));
-}
+  onSalesChartChange(chart: string) {
+    this.store.dispatch(DashboardActions.setSalesChart({ chart }));
+  }
 
-onPerformanceChartChange(chart: string) {
-  this.store.dispatch(DashboardActions.setPerformanceChart({ chart }));
-}
+  onEngagementChartChange(chart: string) {
+    this.store.dispatch(DashboardActions.setEngagementChart({ chart }));
+  }
 
-onColorSchemeChange(scheme: string[]) {
-  this.store.dispatch(DashboardActions.setColorScheme({ colorScheme: scheme }));
-}
+  onPerformanceChartChange(chart: string) {
+    this.store.dispatch(DashboardActions.setPerformanceChart({ chart }));
+  }
 
-// onScaleTypeChange(scale: string) {
-//   this.store.dispatch(DashboardActions.setScaleType({ scaleType: scale }));
-// }
+  onColorSchemeChange(scheme: string[]) {
+    this.store.dispatch(DashboardActions.setColorScheme({ colorScheme: scheme }));
+  }
 
   onCollapseChanged(collapsed: boolean) {
     this.isSidebarCollapsed = collapsed;
@@ -78,7 +78,5 @@ onColorSchemeChange(scheme: string[]) {
   compareColorSchemes = (a: string[], b: string[]) => {
     return JSON.stringify(a) === JSON.stringify(b);
   };
-  
 
-  
 }

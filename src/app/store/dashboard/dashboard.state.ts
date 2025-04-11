@@ -6,5 +6,4 @@ export const initialDashboardState: DashboardState = {
   selectedEngagementChart: 'line',
   selectedPerformanceChart: 'line',
   colorScheme: ['#ed64a6', '#4c51bf'],
-  scaleType: 'normal',
 };

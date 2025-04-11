@@ -29,7 +29,7 @@ export class LineChartComponent implements AfterViewInit {
   @Input() scaleSettings: { xDisplay: boolean; yDisplay: boolean } = { xDisplay: false, yDisplay: true };
 
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   private metricsService = inject(MockMetricsService);
   private chartInstance: Chart<'line'> | null = null;
@@ -44,7 +44,7 @@ export class LineChartComponent implements AfterViewInit {
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
       let dataObservable;
-
+      //calling the mock service to get the data
       if (this.type === 'sales') {
         dataObservable = this.metricsService.getSalesData();
       } else if (this.type === 'engagement') {
@@ -53,11 +53,11 @@ export class LineChartComponent implements AfterViewInit {
         dataObservable = this.metricsService.getPerformanceStats();
       }
       dataObservable.subscribe((response) => {
-        let metrics =response;
+        let metrics = response;
         const config: ChartConfiguration<'line'> = {
           type: 'line',
           data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug'],
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
             datasets: [
               {
                 label: metrics[0].year.toString(),
@@ -99,23 +99,23 @@ export class LineChartComponent implements AfterViewInit {
                 display: false,
                 text: 'Performance Chart',
               },
-            //   zoom:{
-            //   zoom: {
-            //     wheel: {
-            //       enabled: true
-            //     },
-            //     pinch: {
-            //       enabled: true
-            //     },
-            //     mode: 'xy'
-            //   },
-            //   pan: {
-            //     enabled: true,
-            //     mode: 'x', 
-            //     modifierKey: 'ctrl', 
-            //   }
-            // },
-             
+              zoom: {
+                zoom: {
+                  wheel: {
+                    enabled: true
+                  },
+                  pinch: {
+                    enabled: true
+                  },
+                  mode: 'xy',
+                },
+                pan: {
+                  enabled: true,
+                  mode: 'x',
+                  modifierKey: 'ctrl',
+                }
+              },
+
             },
             scales: {
               x: {
@@ -154,6 +154,7 @@ export class LineChartComponent implements AfterViewInit {
   }
 
   private updateChartColors(): void {
+    //UPDATING THE COLORS OF THE CHART
     if (this.chartInstance && this.chartInstance.data.datasets.length >= 2) {
       this.chartInstance.data.datasets[0].backgroundColor = this.colorScheme[0];
       this.chartInstance.data.datasets[1].backgroundColor = this.colorScheme[1];
@@ -164,6 +165,12 @@ export class LineChartComponent implements AfterViewInit {
     }
   }
 
-
+  resetZoom() {
+    // Resetting the zoom level of the chart
+    // This method is called when the reset button is clicked
+    if (this.chartInstance) {
+      this.chartInstance.resetZoom();
+    }
+  }
 
 }

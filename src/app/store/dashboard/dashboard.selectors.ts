@@ -24,12 +24,8 @@ export const selectPerformanceChart = createSelector(
 );
 
 export const selectColorScheme = createSelector(
-    selectDashboardState,
-    (state) => state.colorScheme
-  );
-  
-  export const selectScaleType = createSelector(
-    selectDashboardState,
-    (state) => state.scaleType
-  );
-  
+  selectDashboardState,
+  (state) => state.colorScheme
+);
+
+

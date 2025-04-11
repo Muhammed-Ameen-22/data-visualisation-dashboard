@@ -8,46 +8,41 @@ export interface DashboardState {
   selectedEngagementChart: string;
   selectedPerformanceChart: string;
   colorScheme: string[];
-  scaleType: string;
 }
 
 export const dashboardReducer = createReducer(
-    initialDashboardState,
-    on(DashboardActions.setSection, (state, { section }) => {
-      console.log('[Dashboard Reducer] setSection:', section);
-      return {
-        ...state,
-        selectedSection: section
-      };
-    }),
-    on(DashboardActions.setSalesChart, (state, { chart }) => {
-      console.log('[Dashboard Reducer] setSalesChart:', chart);
-      return {
-        ...state,
-        selectedSalesChart: chart
-      };
-    }),
-    on(DashboardActions.setEngagementChart, (state, { chart }) => {
-      console.log('[Dashboard Reducer] setEngagementChart:', chart);
-      return {
-        ...state,
-        selectedEngagementChart: chart
-      };
-    }),
-    on(DashboardActions.setPerformanceChart, (state, { chart }) => {
-      console.log('[Dashboard Reducer] setPerformanceChart:', chart);
-      return {
-        ...state,
-        selectedPerformanceChart: chart
-      };
-    }),
-    on(DashboardActions.setColorScheme, (state, { colorScheme }) => ({
-        ...state,
-        colorScheme
-      })),
-      on(DashboardActions.setScaleType, (state, { scaleType }) => ({
-        ...state,
-        scaleType
-      }))
-  );
-  
+  initialDashboardState,
+  on(DashboardActions.setSection, (state, { section }) => {
+    console.log('[Dashboard Reducer] setSection:', section);
+    return {
+      ...state,
+      selectedSection: section
+    };
+  }),
+  on(DashboardActions.setSalesChart, (state, { chart }) => {
+    console.log('[Dashboard Reducer] setSalesChart:', chart);
+    return {
+      ...state,
+      selectedSalesChart: chart
+    };
+  }),
+  on(DashboardActions.setEngagementChart, (state, { chart }) => {
+    console.log('[Dashboard Reducer] setEngagementChart:', chart);
+    return {
+      ...state,
+      selectedEngagementChart: chart
+    };
+  }),
+  on(DashboardActions.setPerformanceChart, (state, { chart }) => {
+    console.log('[Dashboard Reducer] setPerformanceChart:', chart);
+    return {
+      ...state,
+      selectedPerformanceChart: chart
+    };
+  }),
+  on(DashboardActions.setColorScheme, (state, { colorScheme }) => ({
+    ...state,
+    colorScheme
+  }))
+);
+

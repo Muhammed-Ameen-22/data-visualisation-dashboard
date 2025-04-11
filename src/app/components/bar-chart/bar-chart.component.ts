@@ -21,7 +21,7 @@ Chart.register(BarController, BarElement, CategoryScale, LinearScale, Tooltip, L
   templateUrl: './bar-chart.component.html',
   styleUrl: './bar-chart.component.scss',
 })
-export class BarChartComponent implements AfterViewInit, OnChanges  {
+export class BarChartComponent implements AfterViewInit, OnChanges {
   @ViewChild('barChartCanvas') barChartCanvas!: ElementRef;
   @Input() type: 'sales' | 'engagement' | 'performance' = 'sales';
   @Input() colorScheme: string[] = ['#ed64a6', '#4c51bf'];
@@ -30,22 +30,22 @@ export class BarChartComponent implements AfterViewInit, OnChanges  {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) { }
 
   private metricsService = inject(MockMetricsService);
   private chartInstance: Chart<'bar'> | null = null;
 
-    async ngOnInit() {
-      if (isPlatformBrowser(this.platformId)) {
-        const { default: zoomPlugin } = await import('chartjs-plugin-zoom');
-        Chart.register(zoomPlugin);
-      }
+  async ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      const { default: zoomPlugin } = await import('chartjs-plugin-zoom');
+      Chart.register(zoomPlugin);
     }
+  }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
       let dataObservable;
-
+      //calling the mock service to get the data
       if (this.type === 'sales') {
         dataObservable = this.metricsService.getSalesData();
       } else if (this.type === 'engagement') {
@@ -54,16 +54,16 @@ export class BarChartComponent implements AfterViewInit, OnChanges  {
         dataObservable = this.metricsService.getPerformanceStats();
       }
       dataObservable.subscribe((response) => {
-        let metrics =response;
+        let metrics = response;
         const config: ChartConfiguration<'bar'> = {
           type: 'bar',
           data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
             datasets: [
               {
                 label: metrics[0].year.toString(),
                 data: metrics[0].data,
-                backgroundColor: this.colorScheme[0], 
+                backgroundColor: this.colorScheme[0],
                 barThickness: 10
               },
               {
@@ -92,22 +92,22 @@ export class BarChartComponent implements AfterViewInit, OnChanges  {
                 display: false,
                 text: 'Orders Chart',
               },
-              // zoom:{
-              //   zoom: {
-              //     wheel: {
-              //       enabled: true
-              //     },
-              //     pinch: {
-              //       enabled: true
-              //     },
-              //     mode: 'xy'
-              //   },
-              //   pan: {
-              //     enabled: true,
-              //     mode: 'x', 
-              //     modifierKey: 'ctrl', 
-              //   }
-              // },
+              zoom: {
+                zoom: {
+                  wheel: {
+                    enabled: true
+                  },
+                  pinch: {
+                    enabled: true
+                  },
+                  mode: 'xy'
+                },
+                pan: {
+                  enabled: true,
+                  mode: 'x',
+                  modifierKey: 'ctrl',
+                }
+              },
             },
             scales: {
               x: {
@@ -142,12 +142,21 @@ export class BarChartComponent implements AfterViewInit, OnChanges  {
   }
 
   private updateChartColors(): void {
+    //UPDATING THE COLORS OF THE CHART
     if (this.chartInstance && this.chartInstance.data.datasets.length >= 2) {
       this.chartInstance.data.datasets[0].backgroundColor = this.colorScheme[0];
       this.chartInstance.data.datasets[1].backgroundColor = this.colorScheme[1];
       this.chartInstance.update();
     }
   }
-  
+
+  resetZoom() {
+    // Resetting the zoom level of the chart
+    // This method is called when the reset button is clicked
+    if (this.chartInstance) {
+      this.chartInstance.resetZoom();
+    }
+  }
+
 
 }

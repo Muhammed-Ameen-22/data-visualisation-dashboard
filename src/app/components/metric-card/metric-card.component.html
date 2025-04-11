@@ -1,15 +1,14 @@
 <div class="card-container">
-    <div class="icon-circle" [ngStyle]="{ 'background-color': iconBgColor }">
-        <i class="{{ icon }}"></i>
-    </div>
-    <div class="info">
-      <h6>{{ title.toUpperCase() }}</h6>
-      <h3>{{ value }}</h3>
-      <p [class.up]="trend === 'up'" [class.down]="trend === 'down'">
-        <span class="arrow">{{ trend === 'up' ? '↑' : '↓' }}</span>
-        {{ trendValue }}
-        <span class="sub">{{ trendText }}</span>
-      </p>
-    </div>
+  <div class="icon-circle" [ngStyle]="{ 'background-color': iconBgColor }">
+    <i class="{{ icon }}"></i>
   </div>
-  
+  <div class="info">
+    <h6>{{ title.toUpperCase() }}</h6>
+    <h3>{{ value }}</h3>
+    <p [class.up]="trend === 'up'" [class.down]="trend === 'down'">
+      <span class="arrow">{{ trend === 'up' ? '↑' : '↓' }}</span>
+      {{ trendValue }}
+      <span class="sub">{{ trendText }}</span>
+    </p>
+  </div>
+</div>

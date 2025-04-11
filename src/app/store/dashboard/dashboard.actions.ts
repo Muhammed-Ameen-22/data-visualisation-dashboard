@@ -21,12 +21,6 @@ export const setPerformanceChart = createAction(
 );
 
 export const setColorScheme = createAction(
-    '[Dashboard] Set Color Scheme',
-    props<{ colorScheme: string[]}>()
-  );
-  
-  export const setScaleType = createAction(
-    '[Dashboard] Set Scale Type',
-    props<{ scaleType: string }>()
-  );
-  
+  '[Dashboard] Set Color Scheme',
+  props<{ colorScheme: string[] }>()
+);

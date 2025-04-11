@@ -4,43 +4,22 @@
     <app-navbar></app-navbar>
     <div class="metrics-wrapper">
       <div class="metrics-grid">
-        <app-metric-card
-        title="Traffic"
-        value="4,81,200"
-        icon="fas fa-chart-bar"
-        iconBgColor="#e53e3e"
-        trend="up"
-        trendValue="2.26%"
-        trendText="Since last month"/>
+        <!-- Using metric-card component to display cards with different metrics -->
+        <app-metric-card title="Traffic" value="4,81,200" icon="fas fa-chart-bar" iconBgColor="#e53e3e" trend="up"
+          trendValue="2.26%" trendText="Since last month" />
 
-      <app-metric-card
-        title="New Users"
-        value="1232"
-        icon="fas fa-user-plus"
-        iconBgColor="#ed8936"
-        trend="down"
-        trendValue="1.79%"
-        trendText="Since last week"/>
+        <app-metric-card title="New Users" value="1232" icon="fas fa-user-plus" iconBgColor="#ed8936" trend="down"
+          trendValue="1.79%" trendText="Since last week" />
 
-      <app-metric-card
-        title="Sales"
-        value="876"
-        icon="fas fa-users"
-        iconBgColor="#ed64a6"
-        trend="down"
-        trendValue="4.20%"
-        trendText="Since yesterday"/>
+        <app-metric-card title="Sales" value="876" icon="fas fa-users" iconBgColor="#ed64a6" trend="down"
+          trendValue="4.20%" trendText="Since yesterday" />
 
-      <app-metric-card
-        title="Performance"
-        value="52.43%"
-        icon="fas fa-chart-line"
-        iconBgColor="#38a169"
-        trend="up"
-        trendValue="8%"
-        trendText="Since last month"/>
+        <app-metric-card title="Performance" value="52.43%" icon="fas fa-chart-line" iconBgColor="#38a169" trend="up"
+          trendValue="8%" trendText="Since last month" />
       </div>
     </div>
+
+    <!-- Filter for the charts and graphs -->
     <div class="top-filter">
       <label for="sectionFilter">Filter:</label>
       <select id="sectionFilter" [ngModel]="(selectedSection$ | async)" (ngModelChange)="onSectionChange($event)">
@@ -49,26 +28,23 @@
         <option value="engagement">User Engagement</option>
         <option value="performance">Performance Stats</option>
       </select>
-
+      <!-- Color changing filter -->
       <div class="chart-modifiers">
         <label>Color Scheme : </label>
         <select [ngModel]="(selectedColorScheme | async)" (ngModelChange)="onColorSchemeChange($event)"
-        [compareWith]="compareColorSchemes">
+          [compareWith]="compareColorSchemes">
           <option [ngValue]="colorSchemes.greenBlue">Green / Blue</option>
           <option [ngValue]="colorSchemes.redYellow">Red / Yellow</option>
           <option [ngValue]="colorSchemes.pinkIndigo">Pink / Indigo</option>
         </select>
-        <!-- <div>
-          <label><input type="checkbox" [(ngModel)]="showXAxis" /> Show X-Axis</label>
-          <label><input type="checkbox" [(ngModel)]="showYAxis" /> Show Y-Axis</label>
-        </div> -->
       </div>
     </div>
-
+    <!-- Charts and graphs section -->
     <div class="content-area">
       <div *ngIf="(selectedSection$ | async) === 'all' || (selectedSection$ | async) === 'sales'" class="chart-section">
         <div class="chart-header">
           <h3>Sales Data (In Millions)</h3>
+          <!-- Changing the chart type: -->
           <select [ngModel]="(salesChartType$ | async)" (ngModelChange)="onSalesChartChange($event)">
             <option value="line">Line Chart</option>
             <option value="bar">Bar Chart</option>
@@ -77,18 +53,18 @@
         </div>
         <ng-container [ngSwitch]="salesChartType$ | async">
           <app-line-chart *ngSwitchCase="'line'" [type]="'sales'"
-            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"
-          ></app-line-chart>
+            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"></app-line-chart>
           <app-bar-chart *ngSwitchCase="'bar'" [type]="'sales'"
-            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"
-          ></app-bar-chart>
+            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"></app-bar-chart>
           <app-pie-chart *ngSwitchCase="'pie'" [type]="'sales'"></app-pie-chart>
         </ng-container>
       </div>
 
-      <div *ngIf="(selectedSection$ | async) === 'all' || (selectedSection$ | async) === 'engagement'" class="chart-section">
+      <div *ngIf="(selectedSection$ | async) === 'all' || (selectedSection$ | async) === 'engagement'"
+        class="chart-section">
         <div class="chart-header">
           <h3>Monthly Active Users</h3>
+          <!-- Changing the chart type: -->
           <select [ngModel]="(engagementChartType$ | async)" (ngModelChange)="onEngagementChartChange($event)">
             <option value="line">Line Chart</option>
             <option value="bar">Bar Chart</option>
@@ -97,18 +73,18 @@
         </div>
         <ng-container [ngSwitch]="engagementChartType$ | async">
           <app-line-chart *ngSwitchCase="'line'" [type]="'engagement'"
-            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"
-          ></app-line-chart>
+            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"></app-line-chart>
           <app-bar-chart *ngSwitchCase="'bar'" [type]="'engagement'"
-            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"
-          ></app-bar-chart>
+            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"></app-bar-chart>
           <app-pie-chart *ngSwitchCase="'pie'" [type]="'engagement'"></app-pie-chart>
         </ng-container>
       </div>
 
-      <div *ngIf="(selectedSection$ | async) === 'all' || (selectedSection$ | async) === 'performance'" class="chart-section">
+      <div *ngIf="(selectedSection$ | async) === 'all' || (selectedSection$ | async) === 'performance'"
+        class="chart-section">
         <div class="chart-header">
           <h3> Customer Satisfaction Index</h3>
+          <!-- Changing the chart type: -->
           <select [ngModel]="(performanceChartType$ | async)" (ngModelChange)="onPerformanceChartChange($event)">
             <option value="line">Line Chart</option>
             <option value="bar">Bar Chart</option>
@@ -117,11 +93,9 @@
         </div>
         <ng-container [ngSwitch]="performanceChartType$ | async">
           <app-line-chart *ngSwitchCase="'line'" [type]="'performance'"
-            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"
-          ></app-line-chart>
+            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"></app-line-chart>
           <app-bar-chart *ngSwitchCase="'bar'" [type]="'performance'"
-            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"
-          ></app-bar-chart>
+            [colorScheme]="(selectedColorScheme | async) || ['#ed64a6', '#4c51bf']"></app-bar-chart>
           <app-pie-chart *ngSwitchCase="'pie'" [type]="'performance'"></app-pie-chart>
         </ng-container>
       </div>

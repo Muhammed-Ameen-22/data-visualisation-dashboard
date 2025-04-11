@@ -23,7 +23,7 @@ export class PieChartComponent implements AfterViewInit {
   @ViewChild('pieChartCanvas') pieChartCanvas!: ElementRef;
   @Input() type: 'sales' | 'engagement' | 'performance' = 'sales';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   private metricsService = inject(MockMetricsService);
 
@@ -31,7 +31,7 @@ export class PieChartComponent implements AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
 
       let dataObservable;
-
+      //calling the mock service to get the data
       if (this.type === 'sales') {
         dataObservable = this.metricsService.getSalesData();
       } else if (this.type === 'engagement') {
@@ -40,7 +40,7 @@ export class PieChartComponent implements AfterViewInit {
         dataObservable = this.metricsService.getPerformanceStats();
       }
       dataObservable.subscribe((response) => {
-        let metrics=response;
+        let metrics = response;
         const config: ChartConfiguration<'pie'> = {
           type: 'pie',
           data: {

@@ -1,66 +1,65 @@
 .card-container {
-    background-color: #1e1e2f; 
-    border-radius: 12px;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transition: 0.3s ease;
-    color: #ffffff;
-    width: 100%;
-  }
-  
-  .icon-circle {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .icon-circle i {
-    color: white;
-    font-size: 20px;
-    display: block;
-    margin: auto;
-  }
-  
-  .info h6 {
-    margin: 0;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #a0aec0;
-  }
-  
-  .info h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #f9f9f9;
-  }
-  
-  .info p {
-    margin: 0.25rem 0 0;
-    font-size: 0.875rem;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-  }
-  
-  .up {
-    color: #48bb78; 
-  }
-  
-  .down {
-    color: #f56565; 
-  }
-  
-  .sub {
-    color: #a0aec0;
-    font-size: 0.75rem;
-  }
-  
+  background-color: #1e1e2f;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease;
+  color: #ffffff;
+  width: 100%;
+}
+
+.icon-circle {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-circle i {
+  color: white;
+  font-size: 20px;
+  display: block;
+  margin: auto;
+}
+
+.info h6 {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #a0aec0;
+}
+
+.info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f9f9f9;
+}
+
+.info p {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.up {
+  color: #48bb78;
+}
+
+.down {
+  color: #f56565;
+}
+
+.sub {
+  color: #a0aec0;
+  font-size: 0.75rem;
+}

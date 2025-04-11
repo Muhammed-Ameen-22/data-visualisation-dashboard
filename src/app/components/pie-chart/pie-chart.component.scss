@@ -3,13 +3,15 @@
   width: 100%;
   max-width: 100%;
   height: 280px;
+}
+
+//responsive design for mobile devices
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: 200px;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
   }
-  
-  @media (max-width: 768px) {
-    .chart-container {
-      height: 200px;
-      position: relative;
-      width: 100%;
-      max-width: 100%;
-    }
-  }
+}

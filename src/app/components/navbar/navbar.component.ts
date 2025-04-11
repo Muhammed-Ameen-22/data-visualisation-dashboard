@@ -11,7 +11,7 @@ export class NavbarComponent {
 
   showDropdown = false;
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) { }
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
