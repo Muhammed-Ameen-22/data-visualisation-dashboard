@@ -9,19 +9,19 @@ An interactive data visualisation dashboard built with **Angular 19**, **NgRx**,
 Supports Line, Bar, and Pie charts with smooth transitions.
 
 🎨 Theme Customisation
-Change color schemes for individual charts via dropdowns.
+- Change color schemes for individual charts via dropdowns.
 
 🧠 NgRx State Management
-Uses a centralised store to manage chart types, color schemes, and selected sections (sales, engagement, performance).
+- Uses a centralised store to manage chart types, color schemes, and selected sections (sales, engagement, performance).
 
 ⚡ Real-Time Interactivity
-Changes in dropdown filters immediately reflect on the charts without reloads.
+- Changes in dropdown filters immediately reflect on the charts without reloads.
 
 🧪 Mock Data Integration
-Charts are driven using dummy JSON datasets to simulate real-world data.
+- Charts are driven using dummy JSON datasets to simulate real-world data.
 
 💻 Responsive Layout
-Fully optimised for desktop and mobile views, including sidebar collapse for small screens.
+- Fully optimised for desktop and mobile views, including sidebar collapse for small screens.
 
 ---
 
